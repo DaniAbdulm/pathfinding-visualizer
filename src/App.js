@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import Node from './components/node';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [grid, setGrid] = useState(createInitialGrid()); //setting up grid using react's useState
+
+  //creating the initial grid
+  const createInitialGrid = () => {
+    const grid = []; 
+    for (let row = 0; row < 20; row++) {
+      const currentRow = []; 
+      for (let col = 0; col < 50; col++) {
+        currentRow.push(createNode(row, col));
+      }
+      grid.push(currentRow);
+    }
+    return grid;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className='grid'>
+        
+      </div>
     </div>
   );
 }
