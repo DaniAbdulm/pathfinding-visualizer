@@ -36,10 +36,12 @@ html {
 
 .node-start {
   background-color: #3dc1d3;
+  box-shadow: 0px 0px 20px #3099a7;
 }
 
 .node-end {
   background-color: #e66767;
+  box-shadow: 0px 0px 20px #a84b4b;
 }
 
 .node-wall {
