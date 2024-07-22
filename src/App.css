@@ -9,15 +9,14 @@
 html {
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background: rgb(87,75,144);
-  background: linear-gradient(180deg, rgba(87,75,144,1) 0%, rgba(48,57,82,1) 65%);
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 
 .grid {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20vh;
+  margin-top: 10vh;
 }
 
 .row {
@@ -61,4 +60,25 @@ html {
 .node-wall:hover {
   background-color: #fff200;
   box-shadow: 0px 0px 20px #fffa65;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+.btn-container button {
+  margin-top: 3rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  padding: .75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: #e67e22;
+  transition: 0.2s;
+}
+.btn-container button:hover {
+  cursor: pointer;
+  background-color: #f39c12;
 }

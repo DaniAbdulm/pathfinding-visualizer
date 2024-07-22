@@ -23,6 +23,8 @@ const createNode = (row, col) => {
     isStart: row === 10 && col === 5, // this box is the start if it's at (10, 5)
     isEnd: row === 10 && col === 45,  // this box is the end if it's at (10, 45)
     isWall: false, // initially no boxes are walls
+    isVisited: false, 
+    isPath: false,
   };
 };
 
@@ -43,6 +45,9 @@ const App = () => {
 
   return (
     <div className="container">
+      <div className='btn-container'>
+        <button>Start Breadth-First Search</button>
+      </div>
       <div className="grid">
         {grid.map((row, rowIdx) => (
           <div key={rowIdx} className="row">
