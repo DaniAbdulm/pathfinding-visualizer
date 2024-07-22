@@ -1,4 +1,6 @@
-export const bfs = (grid, startNode, endNode, updateGrid) => {
+export const bfs = async (grid, startNode, endNode, updateGrid, delay) => {
+    console.log('BFS function called')
+
     const queue = []; 
     const visited = new Set(); 
     const parentMap = new Map(); 
@@ -11,6 +13,7 @@ export const bfs = (grid, startNode, endNode, updateGrid) => {
         const {row, col} = currentNode; 
 
         if (currentNode === endNode) {
+            console.log('End node reached')
             reconstructPath(parentMap, endNode, updateGrid);
             return;
         }
@@ -29,11 +32,19 @@ export const bfs = (grid, startNode, endNode, updateGrid) => {
                         ...neighbor, 
                         isVisited: true,
                     };
+                    console.log(`Visiting node at (${neighbor.row}, ${neighbor.col})`)
                     return newGrid;
                 });
+
+                //adding delay between processing nodes
+                await sleep(delay); 
             }
         }
     }
+};
+
+const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 const getNeighbors = (grid, row, col) => {
@@ -45,7 +56,7 @@ const getNeighbors = (grid, row, col) => {
     return neighbors;
 }; 
 
-const reconstructPath = (parent, endNode, updateGrid) => {
+const reconstructPath = (parentMap, endNode, updateGrid) => {
     let currentNode = endNode; 
     while (parentMap.has(currentNode)) {
         currentNode = parentMap.get(currentNode); 
