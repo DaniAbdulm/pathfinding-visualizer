@@ -29,13 +29,29 @@ const createNode = (row, col) => {
 const App = () => {
   const [grid, setGrid] = useState(createInitialGrid()); // setting up grid using react's useState
 
+  //function that handles clicking on a node
+  const handleNodeClick = (row, col) => {
+    const newGrid = grid.slice(); 
+    const node = newGrid[row][col]; 
+    const newNode = {
+      ...node, 
+      isWall: !node.isWall, //toggles the wall state
+    };
+    newGrid[row][col] = newNode;
+    setGrid(newGrid);
+  };
+
   return (
     <div className="container">
       <div className="grid">
         {grid.map((row, rowIdx) => (
           <div key={rowIdx} className="row">
             {row.map((node, nodeIdx) => (
-              <Node key={nodeIdx} {...node} />
+              <Node 
+                key={nodeIdx} 
+                {...node}
+                onClick={handleNodeClick} //triggers node click function 
+              />
             ))}
           </div>
         ))}

@@ -55,5 +55,10 @@ html {
 }
 
 .node-wall {
-  background-color: black;
+  background-color: #fff200;
+  box-shadow: 0px 0px 20px #fffa65;
+}
+.node-wall:hover {
+  background-color: #fff200;
+  box-shadow: 0px 0px 20px #fffa65;
 }
