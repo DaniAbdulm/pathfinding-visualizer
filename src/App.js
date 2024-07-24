@@ -36,7 +36,7 @@ const App = () => {
     console.log('BFS Started');
     const startNode = grid[10][5]; 
     const endNode = grid[10][45]; 
-    await bfs(grid, startNode, endNode, setGrid, 0); //adding delay of 100ms
+    await bfs(grid, startNode, endNode, setGrid, 20); //adding delay of 100ms
   };
 
   const [grid, setGrid] = useState(createInitialGrid()); // setting up grid using react's useState

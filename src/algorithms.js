@@ -8,6 +8,8 @@ export const bfs = async (grid, startNode, endNode, updateGrid, delay) => {
     queue.push(startNode); 
     visited.add(startNode); 
 
+    let i = 0; //initialize a counter for delays
+
     while (queue.length > 0) {
         const currentNode = queue.shift(); 
         const {row, col} = currentNode; 
@@ -25,19 +27,19 @@ export const bfs = async (grid, startNode, endNode, updateGrid, delay) => {
                 visited.add(neighbor); 
                 parentMap.set(neighbor, currentNode); 
 
-                //update the grid to visualize the visiting node
-                updateGrid(grid => {
-                    const newGrid = grid.slice(); 
-                    newGrid[neighbor.row][neighbor.col] = {
-                        ...neighbor, 
-                        isVisited: true,
-                    };
-                    console.log(`Visiting node at (${neighbor.row}, ${neighbor.col})`)
-                    return newGrid;
-                });
-
-                //adding delay between processing nodes
-                await sleep(delay); 
+                setTimeout(() => {
+                    //update the grid to visualize the visiting node
+                    updateGrid(grid => {
+                        const newGrid = grid.slice(); 
+                        newGrid[neighbor.row][neighbor.col] = {
+                            ...neighbor, 
+                            isVisited: true,
+                        };
+                        console.log(`Visiting node at (${neighbor.row}, ${neighbor.col})`)
+                        return newGrid;
+                    });
+                }, delay * i);
+                i++; //increment the counter for the next delay                
             }
         }
     }
