@@ -16,7 +16,9 @@ export const bfs = async (grid, startNode, endNode, updateGrid, delay) => {
 
         if (currentNode === endNode) {
             console.log('End node reached')
-            reconstructPath(parentMap, endNode, updateGrid);
+            setTimeout(() => {
+                reconstructPath(parentMap, endNode, updateGrid);
+            }, delay * i);
             return;
         }
 
