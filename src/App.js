@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Node from './components/node';
 import './App.css';
-import { bfs } from './algorithms'; //bfs function
+import { bfs } from './bfs'; //bfs function
 
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
     const grid = [];
     for (let row = 0; row < 20; row++) {
       const currentRow = [];
-      for (let col = 0; col < 50; col++) {
+      for (let col = 0; col < 35; col++) {
         currentRow.push(createNode(row, col));
       }
       grid.push(currentRow);
@@ -24,7 +24,7 @@ const App = () => {
       row,
       col,
       isStart: row === 10 && col === 5, // this box is the start if it's at (10, 5)
-      isEnd: row === 10 && col === 45,  // this box is the end if it's at (10, 45)
+      isEnd: row === 10 && col === 29,  // this box is the end if it's at (10, 45)
       isWall: false, // initially no boxes are walls
       isVisited: false, 
       isPath: false,
@@ -35,7 +35,7 @@ const App = () => {
   const handleBFS = async () => {
     console.log('BFS Started');
     const startNode = grid[10][5]; 
-    const endNode = grid[10][45]; 
+    const endNode = grid[10][29]; 
     await bfs(grid, startNode, endNode, setGrid, 20); //adding delay of 100ms
   };
 
