@@ -23,8 +23,8 @@ export const bfs = async (grid, startNode, endNode, updateGrid, delay) => {
         const neighbors = getNeighbors(grid, row, col); 
         for (const neighbor of neighbors) {
             if (!visited.has(neighbor) && !neighbor.isWall) {
-                queue.push(neighbor); 
-                visited.add(neighbor); 
+                queue.push(neighbor); //if neighbor hasn't been visited and is not a wall, then add it to queue
+                visited.add(neighbor); //adding visited neighbor to queue
                 parentMap.set(neighbor, currentNode); 
 
                 setTimeout(() => {
@@ -45,10 +45,6 @@ export const bfs = async (grid, startNode, endNode, updateGrid, delay) => {
     }
 };
 
-const sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-};
-
 const getNeighbors = (grid, row, col) => {
     const neighbors = []; 
     if (row > 0) neighbors.push(grid[row - 1][col]); 
@@ -60,16 +56,24 @@ const getNeighbors = (grid, row, col) => {
 
 const reconstructPath = (parentMap, endNode, updateGrid) => {
     let currentNode = endNode; 
+    const pathNodes = [];
     while (parentMap.has(currentNode)) {
+        pathNodes.push(currentNode);
         currentNode = parentMap.get(currentNode); 
+    };
 
-        updateGrid(grid => {
-            const newGrid = grid.slice(); 
-            newGrid[currentNode.row][currentNode.col] = {
-                ...currentNode, 
-                isPath: true,
-            }; 
-            return newGrid;
-        });
-    }
+    for (let i = 0; i < pathNodes.length; i++) {
+        setTimeout(() => {
+            const node = pathNodes[i]; 
+            updateGrid(grid => {
+                const newGrid = grid.slice(); 
+                newGrid[node.row][node.col] = {
+                    ...node, 
+                    isPath: true,
+                };
+                console.log(`Path node at (${node.row}, ${node.col})`)
+                return newGrid;
+            });
+        }, 40 * i);
+    };
 };
