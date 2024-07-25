@@ -9,7 +9,7 @@
 html {
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  background-color: black;
 }
 
 .grid {
@@ -29,13 +29,13 @@ html {
   height: 20px;
   margin: 4px;
   border-radius: 5px;
-  background-color: black;
-  box-shadow: 0px 0px 20px black;
+  background-color: rgb(75, 75, 75);
+  box-shadow: 0px 0px 20px rgb(32, 32, 32);
 }
 
 .node-start {
-  background-color: #3dc1d3;
-  box-shadow: 0px 0px 20px #3099a7;
+  background-color: #0652DD;
+  box-shadow: 0px 0px 20px #0652DD;
 }
 .node-start:hover {
   background-color: #3dc1d3;
@@ -68,8 +68,8 @@ html {
 }
 
 .node-path {
-  background-color: #9980FA;
-  box-shadow: 0px 0px 5px #4b7bec;
+  background-color: white;
+  box-shadow: 0px 0px 5px white;
 }
 
 .btn-container {
