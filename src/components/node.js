@@ -8,7 +8,7 @@ const Node = ({ row, col, isStart, isEnd, isWall, isVisited, isPath, onClick }) 
         <div 
             className={`node ${extraClassName}`} 
             id={`node-${row}-${col}`} 
-            onClick={() => onClick(row, col)} //adding click hangler
+            onClick={() => onClick(row, col)} //adding click handler
         ></div>
     ) 
 }; 

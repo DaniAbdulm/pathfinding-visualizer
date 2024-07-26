@@ -8,8 +8,8 @@ export const dfs = async (grid, startNode, endNode, updateGrid, delay) => {
 
     let i = 0; //initialize a counter for delays
 
-    visited.add(currentNode); 
-    result.push(currentNode);
+    visited.add(startNode); 
+    result.push(startNode);
 
     while (stack.length > 0) {
         const currentNode = stack.pop(); 

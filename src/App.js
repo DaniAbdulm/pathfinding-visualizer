@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Node from './components/node';
 import './App.css';
 import { bfs } from './bfs'; //bfs function
+import { dfs } from './dfs';
 
 
 const App = () => {
@@ -36,8 +37,16 @@ const App = () => {
     console.log('BFS Started');
     const startNode = grid[10][5]; 
     const endNode = grid[10][29]; 
-    await bfs(grid, startNode, endNode, setGrid, 20); //adding delay of 100ms
+    await bfs(grid, startNode, endNode, setGrid, 20); //adding delay of 20ms
   };
+
+  //dfs function trigger 
+  const handleDFS = async () => {
+    console.log('DFS Started'); 
+    const startNode = grid[10][5]; 
+    const endNode = grid[10][29]; 
+    await dfs(grid, startNode, endNode, setGrid, 20) //adding delay of 20ms
+  }
 
   const [grid, setGrid] = useState(createInitialGrid()); // setting up grid using react's useState
 
@@ -57,7 +66,7 @@ const App = () => {
     <div className="container">
       <div className='btn-container'>
         <button onClick={handleBFS}>Breadth-First Search</button>
-        <button>Depth-First Search</button>
+        <button onClick={handleDFS}>Depth-First Search</button>
         <button className='reset-btn'>Reset</button>
       </div>
       <div className="grid">
