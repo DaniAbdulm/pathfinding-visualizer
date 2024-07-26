@@ -56,7 +56,9 @@ const App = () => {
   return (
     <div className="container">
       <div className='btn-container'>
-        <button onClick={handleBFS}>Start Breadth-First Search</button>
+        <button onClick={handleBFS}>Breadth-First Search</button>
+        <button>Depth-First Search</button>
+        <button className='reset-btn'>Reset</button>
       </div>
       <div className="grid">
         {grid.map((row, rowIdx) => (

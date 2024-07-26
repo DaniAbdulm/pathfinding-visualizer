@@ -12,11 +12,16 @@ html {
   background-color: black;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .grid {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10vh;
 }
 
 .row {
@@ -74,10 +79,12 @@ html {
 
 .btn-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  width: 50%;
 }
 .btn-container button {
   margin-top: 3rem;
+  margin-bottom: 3rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   padding: .75rem 2rem;
@@ -85,10 +92,17 @@ html {
   border-radius: 10px;
   border: none;
   color: white;
-  background-color: #e67e22;
+  background-color: #3742fa;
   transition: 0.2s;
 }
 .btn-container button:hover {
   cursor: pointer;
-  background-color: #f39c12;
+  background-color: #5352ed;
+}
+
+.btn-container .reset-btn {
+  background-color: #ff4757;
+}
+.btn-container .reset-btn:hover {
+  background-color: #ff6b81;
 }

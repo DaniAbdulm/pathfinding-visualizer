@@ -58,7 +58,7 @@ const getNeighbors = (grid, row, col) => {
 
 const reconstructPath = (parentMap, endNode, updateGrid) => {
     let currentNode = endNode; 
-    const pathNodes = [];
+    const pathNodes = [];               
     while (parentMap.has(currentNode)) {
         pathNodes.push(currentNode);
         currentNode = parentMap.get(currentNode); 
