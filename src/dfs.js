@@ -6,10 +6,10 @@ export const dfs = async (grid, startNode, endNode, updateGrid, delay) => {
     const result = []; 
     const parentMap = new Map();  
 
-    let i = 0; //initialize a counter for delays
-
     visited.add(startNode); 
     result.push(startNode);
+
+    let i = 0; //initialize a counter for delays
 
     while (stack.length > 0) {
         const currentNode = stack.pop(); 
@@ -18,7 +18,7 @@ export const dfs = async (grid, startNode, endNode, updateGrid, delay) => {
         if (currentNode === endNode) {
             console.log('End node reached'); 
             setTimeout(() => {
-                reconstructPath(parentMap, endNode, updateGrid); 
+                reconstructPath(parentMap, endNode, updateGrid);
             }, delay * i); 
             return;
         }
