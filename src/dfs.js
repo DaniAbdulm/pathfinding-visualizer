@@ -1,54 +1,63 @@
 export const dfs = async (grid, startNode, endNode, updateGrid, delay) => {
-    console.log('DFS fucntion called'); 
+    console.log('DFS function called');
 
-    const stack = [startNode]; //holds nodes to be processed in order of discovery
+    const stack = [startNode]; // holds nodes to be processed in order of discovery
     const visited = new Set(); 
-    const result = []; 
     const parentMap = new Map();  
 
-    visited.add(startNode); 
-    result.push(startNode);
-
-    let i = 0; //initialize a counter for delays
+    let i = 0; // initialize a counter for delays
+    let endNodeFound = false; //flag to indicate if end node is reached
 
     while (stack.length > 0) {
-        const currentNode = stack.pop(); 
-        const {row, col} = currentNode; 
+        const currentNode = stack.pop();
+        const { row, col } = currentNode;
 
-        if (currentNode === endNode) {
-            console.log('End node reached'); 
-            setTimeout(() => {
-                reconstructPath(parentMap, endNode, updateGrid);
-            }, delay * i); 
-            return;
-        }
+        if (!visited.has(currentNode)) {
+            visited.add(currentNode);
 
-        if (!visited.has(currentNode)) { 
             setTimeout(() => {
-                //update grid to visualize the visiting node
                 updateGrid(grid => {
-                    const newGrid = grid.slice(); 
+                    const newGrid = grid.slice();
                     newGrid[currentNode.row][currentNode.col] = {
-                        ...currentNode, 
+                        ...currentNode,
                         isVisited: true,
-                    }; 
-                    console.log(`Visiting node at (${currentNode.row}, ${currentNode.col})`)
+                    };
+                    console.log(`Visiting node at (${currentNode.row}, ${currentNode.col})`);
                     return newGrid;
-                }); 
-            }, delay * i); 
+                });
 
-            i++; //increment the counter for the next delay
+                // checking if end node is reached
+                if (currentNode === endNode && !endNodeFound) {
+                    console.log('End node reached');
+                    endNodeFound = true;
+                    reconstructPath(parentMap, endNode, updateGrid);
+                    return;
+                }
+            }, delay * i);
 
-            visited.add(currentNode); 
+            i++;
 
-            const neighbors = getNeighbors(grid, row, col); 
+            // adding neighbors to stack and set parent map
+            const neighbors = getNeighbors(grid, row, col);
             for (const neighbor of neighbors) {
                 if (!visited.has(neighbor) && !neighbor.isWall) {
-                    stack.push(neighbor); 
+                    stack.push(neighbor);
                     parentMap.set(neighbor, currentNode);
                 }
             }
+
+            //breaking the loop if end node is found
+            if (endNodeFound) {
+                break;
+            }
         }
+    }
+
+    // ensuring path reconstruction happens after all nodes have been visited
+    if (!endNodeFound) {
+        setTimeout(() => {
+            reconstructPath(parentMap, endNode, updateGrid);
+        }, delay * i);
     }
 };
 

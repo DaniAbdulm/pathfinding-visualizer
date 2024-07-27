@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Node from './components/node';
 import './App.css';
 import { bfs } from './bfs'; //bfs function
-import { dfs } from './dfs';
+import { dfs } from './dfs'; //dfs function
 
 
 const App = () => {
