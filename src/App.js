@@ -5,7 +5,7 @@ import { bfs } from './bfs'; //bfs function
 import { dfs } from './dfs'; //dfs function
 
 
-const App = () => {
+const App = () => { 
   // creating the initial grid
   const createInitialGrid = () => {
     const grid = [];
@@ -30,7 +30,7 @@ const App = () => {
       isVisited: false, 
       isPath: false,
     };
-  };
+  }; 
 
   //bfs function trigger
   const handleBFS = async () => {
@@ -62,12 +62,17 @@ const App = () => {
     setGrid(newGrid);
   };
 
+  //function that handles resetting the grid
+  const handleReset = () => {
+    setGrid(createInitialGrid());
+  }
+
   return (
     <div className="container">
       <div className='btn-container'>
         <button onClick={handleBFS}>Breadth-First Search</button>
         <button onClick={handleDFS}>Depth-First Search</button>
-        <button className='reset-btn'>Reset</button>
+        <button className='reset-btn' onClick={handleReset}>Reset</button>
       </div>
       <div className="grid">
         {grid.map((row, rowIdx) => (
