@@ -8,12 +8,22 @@ export const dfs = async (grid, startNode, endNode, updateGrid, delay) => {
     let i = 0; // initialize a counter for delays
     let endNodeFound = false; //flag to indicate if end node is reached
 
-    while (stack.length > 0) {
+    while (stack.length > 0 && !endNodeFound) {
         const currentNode = stack.pop();
         const { row, col } = currentNode;
 
         if (!visited.has(currentNode)) {
             visited.add(currentNode);
+
+            // checking if end node is reached
+            if (currentNode === endNode && !endNodeFound) {
+                console.log('End node reached');
+                endNodeFound = true;
+                setTimeout(() => {
+                    reconstructPath(parentMap, endNode, updateGrid);
+                }, delay * i);
+                return;
+            }
 
             setTimeout(() => {
                 updateGrid(grid => {
@@ -25,14 +35,6 @@ export const dfs = async (grid, startNode, endNode, updateGrid, delay) => {
                     console.log(`Visiting node at (${currentNode.row}, ${currentNode.col})`);
                     return newGrid;
                 });
-
-                // checking if end node is reached
-                if (currentNode === endNode && !endNodeFound) {
-                    console.log('End node reached');
-                    endNodeFound = true;
-                    reconstructPath(parentMap, endNode, updateGrid);
-                    return;
-                }
             }, delay * i);
 
             i++;
