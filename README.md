@@ -2,7 +2,7 @@
 
 ## Description
 
-Pathfinding Algorithm Visualizer is a react based web application that visualizes different pathfinding algorithms (currently breadth-first search and depth-first search). The user can create walls and see how the algorithms find the shortest path.
+Pathfinding Algorithm Visualizer is a react based web application that visualizes different pathfinding algorithms (currently breadth-first search and depth-first search). The user can create walls and see how the algorithms finds the shortest path.
 
 ## Table of Contents
 
